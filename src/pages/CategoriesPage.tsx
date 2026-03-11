@@ -36,7 +36,7 @@ const CategoriesPage = () => {
               >
                 <div className="h-48 overflow-hidden bg-muted">
                   <img
-                    src={cat.items[0]?.image || "/placeholder.svg"}
+                    src={cat.items[0]?.image || cat.mandiItems?.[0]?.image || "/placeholder.svg"}
                     alt={cat.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
@@ -44,7 +44,7 @@ const CategoriesPage = () => {
                 </div>
                 <div className="p-5 text-center">
                   <h3 className="font-display text-xl font-bold text-foreground">{cat.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">{cat.items.length} items</p>
+                  <p className="text-sm text-muted-foreground mt-1">{cat.items.length + (cat.mandiItems?.length || 0)} items</p>
                 </div>
               </Link>
             </motion.div>
