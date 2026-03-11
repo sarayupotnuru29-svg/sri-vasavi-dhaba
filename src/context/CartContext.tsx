@@ -1,13 +1,20 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import type { MenuItem } from "@/data/menuData";
 
-export interface CartItem extends MenuItem {
+export interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  category: string;
+  description: string;
+  option?: string; // e.g. "Single", "Half", "Full" for mandis
   quantity: number;
 }
 
 interface CartContextType {
   items: CartItem[];
-  addToCart: (item: MenuItem) => void;
+  addToCart: (item: MenuItem | CartItem) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
@@ -20,13 +27,25 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
 
-  const addToCart = useCallback((item: MenuItem) => {
+  const addToCart = useCallback((item: MenuItem | CartItem) => {
+    const cartId = 'option' in item && item.option ? `${item.id}-${item.option}` : item.id;
+    const option = 'option' in item ? item.option : undefined;
+
     setItems((prev) => {
-      const existing = prev.find((i) => i.id === item.id);
+      const existing = prev.find((i) => i.id === cartId);
       if (existing) {
-        return prev.map((i) => (i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i));
+        return prev.map((i) => (i.id === cartId ? { ...i, quantity: i.quantity + 1 } : i));
       }
-      return [...prev, { ...item, quantity: 1 }];
+      return [...prev, {
+        id: cartId,
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        category: item.category,
+        description: item.description,
+        option,
+        quantity: 1,
+      }];
     });
   }, []);
 

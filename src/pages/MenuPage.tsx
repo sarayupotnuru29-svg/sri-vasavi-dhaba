@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import menuCategories from "@/data/menuData";
 import MenuItemCard from "@/components/MenuItemCard";
+import MandiItemCard from "@/components/MandiItemCard";
 import menuBg from "@/assets/menu-bg.jpg";
 
 const MenuPage = () => {
@@ -64,8 +65,13 @@ const MenuPage = () => {
               {cat.name}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {/* Regular items */}
               {cat.items.map((item) => (
                 <MenuItemCard key={item.id} item={item} />
+              ))}
+              {/* Mandi items with dropdown */}
+              {cat.mandiItems?.map((item) => (
+                <MandiItemCard key={item.id} item={item} />
               ))}
             </div>
           </div>

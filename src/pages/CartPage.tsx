@@ -9,7 +9,10 @@ const CartPage = () => {
 
   const handleWhatsAppOrder = () => {
     const message = items
-      .map((i) => `${i.name} x${i.quantity} — ₹${i.price * i.quantity}`)
+      .map((i) => {
+        const optionText = i.option ? ` (${i.option})` : "";
+        return `${i.name}${optionText} x${i.quantity} — ₹${i.price * i.quantity}`;
+      })
       .join("\n");
     const total = `\n\nTotal: ₹${totalPrice}`;
     const url = `https://wa.me/9390007617?text=${encodeURIComponent("Order from Sri Vasavi Family Dhaba:\n\n" + message + total)}`;
@@ -62,6 +65,11 @@ const CartPage = () => {
                   />
                   <div className="flex-1 min-w-0">
                     <h3 className="font-display font-bold text-lg truncate">{item.name}</h3>
+                    {item.option && (
+                      <span className="text-xs font-body font-semibold bg-primary/10 text-primary px-2 py-0.5 rounded">
+                        {item.option}
+                      </span>
+                    )}
                     <p className="text-primary font-semibold">₹{item.price}</p>
                   </div>
                   <div className="flex items-center gap-2">
