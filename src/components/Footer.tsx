@@ -8,7 +8,7 @@ const Footer = () => (
       {/* Brand */}
       <div className="space-y-4">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Logo" className="h-12 w-12 rounded-full" />
+          <img src={logo} alt="Logo" className="h-14 w-auto object-contain" />
           <span className="font-display text-lg font-bold text-dhaba-yellow">Sri Vasavi Family Dhaba</span>
         </div>
         <p className="text-sm leading-relaxed">Authentic South Indian & Andhra cuisine with the warmth of a family dhaba.</p>

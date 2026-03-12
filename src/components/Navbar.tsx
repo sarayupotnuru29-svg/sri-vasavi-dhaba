@@ -21,7 +21,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-dhaba-dark/95 backdrop-blur-md border-b border-dhaba-warm/30">
       <div className="container mx-auto flex items-center justify-between py-3 px-4">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="Sri Vasavi Family Dhaba" className="h-12 w-12 rounded-full object-cover" />
+          <img src={logo} alt="Sri Vasavi Family Dhaba" className="h-14 w-auto object-contain" />
           <span className="font-display text-xl font-bold text-dhaba-yellow hidden sm:block">
             Sri Vasavi Family Dhaba
           </span>

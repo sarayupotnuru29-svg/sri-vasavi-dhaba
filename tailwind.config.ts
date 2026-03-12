@@ -58,6 +58,7 @@ export default {
           cream: "hsl(var(--dhaba-cream))",
           dark: "hsl(var(--dhaba-dark))",
           warm: "hsl(var(--dhaba-warm))",
+          gold: "hsl(var(--dhaba-gold))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
